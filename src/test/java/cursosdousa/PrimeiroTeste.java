@@ -4,9 +4,13 @@ import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.Mock;
 
+@ExtendWith(MockitoExtension.class)
 public class PrimeiroTeste {
 
+    @Mock
     private Calculadora calculadora = new Calculadora();
     int numero1 = 10, numero2 = 5;;
 
@@ -36,7 +40,8 @@ public class PrimeiroTeste {
         int num1 = -10, num2 = -5;
 
         //execução
-        org.junit.jupiter.api.Assertions.assertThrows(RuntimeException.class, () ->calculadora.somar(num1, num2));
+        org.junit.jupiter.api.Assertions.
+                assertThrows(RuntimeException.class, () ->calculadora.somar(num1, num2));
     }
 
     @Test
