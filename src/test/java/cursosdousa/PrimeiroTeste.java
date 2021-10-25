@@ -1,8 +1,9 @@
 package cursosdousa;
 
 import org.assertj.core.api.Assertions;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 
 public class PrimeiroTeste {
 
@@ -10,12 +11,13 @@ public class PrimeiroTeste {
     int numero1 = 10, numero2 = 5;;
 
 
-    @Before
+    @BeforeEach
     public void setUp() {
         Calculadora calculadora = new Calculadora();
     }
 
     @Test
+    @DisplayName("Deve somar 2 números")
     public void deveSomar2Numeros(){
         // cenário do teste
 
@@ -27,16 +29,18 @@ public class PrimeiroTeste {
         Assertions.assertThat(resultado).isEqualTo(15);
     }
 
-    @Test(expected = RuntimeException.class)
+    @Test//(expected = RuntimeException.class)
+    @DisplayName("Não deve somar números negativos")
     public void naoDeveSomarNumerosNegativos(){
         // cenário do teste
         int num1 = -10, num2 = -5;
 
         //execução
-        calculadora.somar(num1, num2);;
+        org.junit.jupiter.api.Assertions.assertThrows(RuntimeException.class, () ->calculadora.somar(num1, num2));
     }
 
     @Test
+    @DisplayName("Deve subtrair 2 números")
     public void deveSubtrair2Numeros(){
         // cenário do teste
 
@@ -47,6 +51,7 @@ public class PrimeiroTeste {
     }
 
     @Test
+    @DisplayName("Deve multiplicar 2 números")
     public void deveMultiplicar2Numeros(){
         // cenário do teste
 
@@ -58,6 +63,7 @@ public class PrimeiroTeste {
     }
 
     @Test
+    @DisplayName("Deve dividir 2 números")
     public void dividir2Numeros(){
         // cenário do teste
 
@@ -68,15 +74,15 @@ public class PrimeiroTeste {
         Assertions.assertThat(resultado).isEqualTo(2);
     }
 
-    @Test(expected = ArithmeticException.class)
+    @Test
+    @DisplayName("Deve multiplicar 2 números")
     public void naoDeveDividirNumerosIgualZero(){
         // cenário do teste
         int numero1 = 10, numero2 = 0;
-        //execução
-        float resultado = calculadora.dividir(numero1, numero2);
 
         //Verificação
-        Assertions.assertThat(resultado).isZero();
+        org.junit.jupiter.api.Assertions
+                .assertThrows(ArithmeticException.class, ()-> calculadora.dividir(numero1, numero2));
     }
 }
 
